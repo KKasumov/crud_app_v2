@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,7 +68,7 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
             Type type = new TypeToken<List<Label>>() {}.getType();
             return gson.fromJson(reader, type);
         } catch (IOException e) {
-            return new ArrayList<>();
+            return  Collections.emptyList();
         }
     }
 

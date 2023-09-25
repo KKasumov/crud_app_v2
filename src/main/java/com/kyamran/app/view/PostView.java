@@ -40,7 +40,10 @@ public class PostView {
                 break;
             }
 
-            Label currentSelected = labelController.getLabelById(input);
+            Label currentSelected = availableLabels.stream()
+                    .filter(l->l.getId().equals(input))
+                    .findFirst()
+                    .orElse(null);
             if (currentSelected != null) {
                 selectedLabels.add(currentSelected);
                 availableLabels.remove(currentSelected);

@@ -5,6 +5,7 @@ import com.kyamran.app.model.Post;
 import com.kyamran.app.model.PostStatus;
 import com.kyamran.app.model.Writer;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -36,7 +37,7 @@ public class WriterView {
         String firstName = scanner.nextLine();
         System.out.println("Enter new last name: ");
         String lastName = scanner.nextLine();
-        Writer updatedWriter = writerController.updateWriter(id, firstName, lastName);
+        Writer updatedWriter = writerController.updateWriter(id, firstName, lastName, new ArrayList<>());
         System.out.println("Updated writer: " + updatedWriter);
     }
 

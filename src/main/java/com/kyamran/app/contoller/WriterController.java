@@ -26,11 +26,12 @@ public class WriterController {
         return writerRepository.getAll();
     }
 
-    public Writer updateWriter(Integer id, String firstName, String lastName) {
+    public Writer updateWriter(Integer id, String firstName, String lastName,List<Post> posts) {
         Writer writer = new Writer();
         writer.setId(id);
         writer.setFirstName(firstName);
         writer.setLastName(lastName);
+        writer.setPosts(posts);
         return writerRepository.update(writer);
     }
 
@@ -55,7 +56,7 @@ public class WriterController {
             return null;
         }
         writer.getPosts().add(post);
-        return updateWriter(writer.getId(), writer.getFirstName(), writer.getLastName());
+        return updateWriter(writer.getId(), writer.getFirstName(), writer.getLastName(), writer.getPosts());
     }
 
     public Writer updatePostOfWriter(Integer writerId, Post post) {
@@ -65,7 +66,7 @@ public class WriterController {
         }
         writer.getPosts().removeIf(p -> Objects.equals(p.getId(), post.getId()));
         writer.getPosts().add(post);
-        return updateWriter(writer.getId(), writer.getFirstName(), writer.getLastName());
+        return updateWriter(writer.getId(), writer.getFirstName(), writer.getLastName(), writer.getPosts());
     }
 
     public Writer deletePostOfWriter(Integer writerId, Integer postId) {
@@ -74,6 +75,6 @@ public class WriterController {
             return null;
         }
         writer.getPosts().removeIf(post -> Objects.equals(post.getId(), postId));
-        return updateWriter(writer.getId(), writer.getFirstName(), writer.getLastName());
+        return updateWriter(writer.getId(), writer.getFirstName(), writer.getLastName(), writer.getPosts());
     }
 }
